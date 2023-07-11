@@ -1,29 +1,40 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, SectionList } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Feed } from "./pages/Feed";
-import { Event } from "./pages/Event";
-import { Calendar } from "./pages/Calendar";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+} from "react-native";
 
-const Stack = createNativeStackNavigator();
-
-export default function App() {
+export const Event = ({name, time, location}) => {
+    console.log("name: " + name);
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName={"Home"}
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="Home" component={Feed} />
-        <Stack.Screen name="Event" component={Event} />
-        <Stack.Screen name="Calendar" component={Calendar} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View style={styles.container}>
+      <StatusBar style="auto" />
+      <View style={styles.eventCard}>
+        <View style={styles.eventCardHeader}>
+          <Text style={{ color: "white" }}>{name}</Text>
+        </View>
+        <View style={styles.eventCardInfo}>
+          <View style={styles.eventCardProfiles}>
+            <Text style={{ color: "white" }}>profile pics</Text>
+          </View>
+          <View style={styles.eventCardLogistics}>
+            <Text style={{ color: "white" }}>{time}</Text>
+            <Text style={{ color: "white" }}>{location}</Text>
+          </View>
+        </View>
+        <View style={styles.cancelButton}>
+          <Button
+            title="CANCEL"
+            onPress={() => console.log("button pressed")}
+            color="#fff"
+          />
+        </View>
+      </View>
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
