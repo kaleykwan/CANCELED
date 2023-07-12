@@ -15,7 +15,8 @@ export const Feed = ({navigation}) => {
       data: [
         {
           eventName: "lunch with Anika",
-          eventTime: "1:30 pm",
+          eventTime: "1:30 pm", 
+          /* eventTime: new Date('July 12, 2023 01:30:00'), */
           eventLocation: "696 Benvenue Avenue",
         },
         {
@@ -86,7 +87,7 @@ export const Feed = ({navigation}) => {
               <View style={styles.cancelButton}>
                 <Button
                   title="CANCEL"
-                  onPress={() => console.log(item.eventName)}
+                  onPress={() => console.log(item.eventTime)}
                   color="#fff"
                 />
               </View>
