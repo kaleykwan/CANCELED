@@ -1,13 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-} from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 
-export const Event = ({name, time, location}) => {
-    console.log("name: " + name);
+export const Event = ({ route, navigation }) => {
+  const { name, time, location } = route.params;
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
