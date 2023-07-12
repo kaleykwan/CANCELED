@@ -2,25 +2,46 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Button, SectionList } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Feed } from "./pages/Feed";
 import { Event } from "./pages/Event";
 import { Calendar } from "./pages/Calendar";
+import { Profile } from "./pages/Profile";
 
-const Stack = createNativeStackNavigator();
+const FeedStack = createNativeStackNavigator();
+
+function FeedStackScreen() {
+  return (
+    <FeedStack.Navigator screenOptions={{ headerShown: false }}>
+      <FeedStack.Screen name="Feed" component={Feed} />
+      <FeedStack.Screen name="Event" component={Event} />
+    </FeedStack.Navigator>
+  );
+}
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName={"Home"}
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="Home" component={Feed} />
-        <Stack.Screen name="Event" component={Event} />
-        <Stack.Screen name="Calendar" component={Calendar} />
-      </Stack.Navigator>
+      <Tab.Navigator screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Feed') {
+              iconName = focused
+                ? 'ios-information-circle'
+                : 'ios-information-circle-outline';
+            }
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+        }, { headerShown: false })}>
+        <Tab.Screen name="Feed" component={FeedStackScreen} />
+        <Tab.Screen name="Profile" component={Profile} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
