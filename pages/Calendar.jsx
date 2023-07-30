@@ -11,7 +11,6 @@ const timeString = (time) => {
 
 export const Calendar = ({navigation}) => {
   const [items, setItems] = useState({})
-  
   const loadItems = (day) => {
     setTimeout(() => {
       for (let i = -15; i < 85; i++) {
@@ -47,8 +46,7 @@ export const Calendar = ({navigation}) => {
               style={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                alignItems: 'center',
-              }}>
+                alignItems: 'center',}}>
               <Text>{'Dinner with Kaley'}</Text>
               <Avatar.Text label="K" />
             </View>
@@ -59,7 +57,7 @@ export const Calendar = ({navigation}) => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
       <Agenda
         items = {items}
         loadItemsForMonth = {loadItems}
@@ -68,4 +66,15 @@ export const Calendar = ({navigation}) => {
         />
     </View>
   );
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: "#fff",
+      alignItems: "center",
+      justifyContent: "center",
+      paddingTop: 50,
+    },
+  })
+
 };

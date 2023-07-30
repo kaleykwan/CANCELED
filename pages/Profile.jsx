@@ -1,12 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Button, Image } from "react-native";
+import { supabase } from "../supabase";
 
 export const Profile = () => {
   return (
     <View style={styles.container}>
       <View style={styles.profileHeader}>
         <View style={styles.profileInformation}>
-          <Text style={{fontWeight: "bold", fontSize: "30"}}>Kaley Kwan</Text>
+          <Text style={{fontWeight: "bold", fontSize: 30}}>Kaley Kwan</Text>
           <Text>(650) 680-5243</Text>
         </View>
         <View style={styles.editProfileButton}>
@@ -16,6 +17,9 @@ export const Profile = () => {
             color="#fff"
           />
         </View>
+        <View style={styles.editProfileButton}>
+        <Button title="Sign Out" onPress={() => supabase.auth.signOut()} color="#fff" />
+      </View>
       </View>
     </View>
   );
