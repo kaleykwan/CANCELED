@@ -41,6 +41,7 @@ export default function App() {
         }, { headerShown: false })}>
         <Tab.Screen name="Feed" component={FeedStackScreen} />
         <Tab.Screen name="Profile" component={Profile} />
+        <Tab.Screen name ="Calendar" component={Calendar} />
       </Tab.Navigator>
     </NavigationContainer>
   );
